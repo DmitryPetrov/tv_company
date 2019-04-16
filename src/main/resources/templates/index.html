@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TV company app</title>
+<link th:href="@{../css/index.css}" rel="stylesheet">
+</head>
+
+<body>
+
+  <fieldset>
+    <legend>Subscribers</legend>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+      <tr th:each="item : ${subscribers_list}">
+        <td th:utext="${item.id}">..</td>
+        <td th:utext="${item.name}">..</td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Chennels</legend>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr th:each="item : ${chennels_list}">
+        <td th:utext="${item.id}">..</td>
+        <td th:utext="${item.name}">..</td>
+        <td th:utext="${item.description}">..</td>
+      </tr>
+    </table>
+  </fieldset>
+
+</body>
+</html>

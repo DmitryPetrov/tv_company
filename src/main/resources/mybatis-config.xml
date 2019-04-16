@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="application.properties" />
+	<typeAliases>
+		<typeAlias type="com.example.name.model.Chennel" alias="Chennel"></typeAlias>
+		<typeAlias type="com.example.name.model.Subscriber" alias="Subscriber"></typeAlias>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${spring.datasource.driver-class-name}" />
+				<property name="url" value="${spring.datasource.url}" />
+				<property name="username" value="${spring.datasource.username}" />
+				<property name="password" value="${spring.datasource.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="ChennelMapper.xml" />
+		<mapper resource="SubscruberMapper.xml" />
+	</mappers>
+</configuration>
