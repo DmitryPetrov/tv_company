@@ -6,7 +6,6 @@
 </head>
 
 <body>
-
   <fieldset>
     <legend>Subscribers</legend>
     <table>
@@ -19,8 +18,42 @@
         <td th:utext="${item.name}">..</td>
       </tr>
     </table>
+
+    <br>
+    <form th:action="@{subscriber/add}" th:object="${subscriber}" method="POST">
+      <p>
+        Add new subscriber <input type="text" th:field="*{name}" /> <input type="submit" value="Add" />
+      </p>
+    </form>
+
+    <br>
+    <form th:action="@{subscriber/update}" th:object="${subscriber}" method="POST">
+      <p>
+        <label>Update subscriber name from</label> 
+        <select th:field="*{id}">
+          <option value="0">--</option>
+          <option th:each="item : ${subscribers_list}" th:value="${item.id}"
+            th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
+        </select> 
+        <label>to</label> 
+          <input type="text" th:field="*{name}" th:value="${subscriber.name}"/> 
+          <input type="submit" value="Update"/>
+      </p>
+    </form>
+
+    <br>
+    <form th:action="@{subscriber/delete}" th:object="${subscriber}" method="POST">
+      <label>Delete subscriber</label> 
+      <select th:field="*{id}">
+        <option value="0">--</option>
+        <option th:each="item : ${subscribers_list}" th:value="${item.id}"
+          th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
+      </select> 
+      <input type="submit" value="Delete" />
+    </form>
   </fieldset>
 
+  <br>
   <fieldset>
     <legend>Chennels</legend>
     <table>
@@ -35,6 +68,40 @@
         <td th:utext="${item.description}">..</td>
       </tr>
     </table>
+    
+    <br>
+    <form th:action="@{chennel/add}" th:object="${chennel}" method="POST">
+      <p>
+        Add new chennel <input type="text" th:field="*{name}" /> <input type="submit" value="Add" />
+      </p>
+    </form>
+
+    <br>
+    <form th:action="@{chennel/update}" th:object="${chennel}" method="POST">
+      <p>
+        <label>Update chennel name from</label> 
+        <select th:field="*{id}">
+          <option value="0">--</option>
+          <option th:each="item : ${chennels_list}" th:value="${item.id}"
+            th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
+        </select> 
+        <label>to</label> 
+          <input type="text" th:field="*{name}" th:value="${chennel.name}"/> 
+          <input type="text" th:field="*{description}" th:value="${chennel.description}"/> 
+          <input type="submit" value="Update"/>
+      </p>
+    </form>
+
+    <br>
+    <form th:action="@{chennel/delete}" th:object="${chennel}" method="POST">
+      <label>Delete chennel</label> 
+      <select th:field="*{id}">
+        <option value="0">--</option>
+        <option th:each="item : ${chennels_list}" th:value="${item.id}"
+          th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
+      </select> 
+      <input type="submit" value="Delete" />
+    </form>
   </fieldset>
 
 </body>
