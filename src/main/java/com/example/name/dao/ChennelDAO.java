@@ -23,7 +23,7 @@ public class ChennelDAO {
         }
     }
 
-    public Chennel getById(Integer chennelId) {
+    public Chennel getById(Long chennelId) {
         SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
         try {
             ChennelMapper ChennelMapper = sqlSession.getMapper(ChennelMapper.class);
@@ -54,11 +54,11 @@ public class ChennelDAO {
         }
     }
 
-    public void delete(Integer chennelId) {
+    public void delete(Chennel chennel) {
         SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
         try {
             ChennelMapper ChennelMapper = sqlSession.getMapper(ChennelMapper.class);
-            ChennelMapper.delete(chennelId);
+            ChennelMapper.delete(chennel.getId());
             sqlSession.commit();
         } finally {
             sqlSession.close();

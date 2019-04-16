@@ -24,7 +24,7 @@ public class SubscriberDAO {
         }
     }
 
-    public Subscriber getById(Integer subscriberId) {
+    public Subscriber getById(Long subscriberId) {
         SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
         try {
             SubscriberMapper SubscriberMapper = sqlSession.getMapper(SubscriberMapper.class);
@@ -55,11 +55,11 @@ public class SubscriberDAO {
         }
     }
 
-    public void delete(Integer subscriberId) {
+    public void delete(Subscriber subscriber) {
         SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
         try {
             SubscriberMapper SubscriberMapper = sqlSession.getMapper(SubscriberMapper.class);
-            SubscriberMapper.delete(subscriberId);
+            SubscriberMapper.delete(subscriber.getId());
             sqlSession.commit();
         } finally {
             sqlSession.close();

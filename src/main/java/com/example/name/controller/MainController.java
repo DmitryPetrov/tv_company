@@ -40,42 +40,48 @@ public class MainController {
 
     @RequestMapping(value = "subscriber/add", method = RequestMethod.POST)
     public String addSubscriber(Model model, Subscriber subscriber) {
-
-        return "redirect:";
+        subscriberDAO.insert(subscriber);
+        
+        return "redirect:/";
     }
 
 
     @RequestMapping(value = "chennel/add", method = RequestMethod.POST)
     public String addChennel(Model model, Chennel chennel) {
-
-        return "redirect:";
+        chennelDAO.insert(chennel);
+        
+        return "redirect:/";
     }
 
 
     @RequestMapping(value = "subscriber/update", method = RequestMethod.POST)
     public String updateSubscriber(Model model, Subscriber subscriber) {
-
-        return "list_page";
+        subscriberDAO.update(subscriber);
+        
+        return "redirect:/";
     }
 
 
     @RequestMapping(value = "chennel/update", method = RequestMethod.POST)
     public String updateChennel(Model model, Chennel chennel) {
-
-        return "list_page";
+        chennelDAO.update(chennel);
+        
+        return "redirect:/";
     }
 
 
     @RequestMapping(value = "subscriber/delete", method = RequestMethod.POST)
-    public String deleteSubscriber(Model model) {
-
-        return "redirect:";
+    public String deleteSubscriber(Model model, Subscriber subscriber) {
+        subscriberDAO.delete(subscriber);
+        
+        return "redirect:/";
     }
 
 
     @RequestMapping(value = "chennel/delete", method = RequestMethod.POST)
-    public String deleteChennel(Model model) {
-
-        return "redirect:";
+    public String deleteChennel(Model model, Chennel chennel) {
+        chennelDAO.delete(chennel);
+        
+        return "redirect:/";
     }
 }

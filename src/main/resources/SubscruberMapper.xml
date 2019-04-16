@@ -4,7 +4,7 @@
 
 <mapper namespace='com.example.name.mapper.SubscriberMapper'>
 
-	<select id='getById' parameterType='int'
+	<select id='getById' parameterType='long'
 		resultType='com.example.name.model.Subscriber'>
 		SELECT
 			id as id,
@@ -21,7 +21,7 @@
 		<result property='name' column='name' />
 	</resultMap>
 
-	<select id='getByFavoriteChennel' parameterType='int'
+	<select id='getByFavoriteChennel' parameterType='long'
 		resultType='com.example.name.model.Subscriber'>
 		SELECT
 			id as id,
@@ -57,12 +57,12 @@
 	<update id='update' parameterType='Subscriber'>
 		UPDATE subscriber
 		SET
-			(name) = (#{name})
+			name = #{name}
 		WHERE
 			id = #{id}
 	</update>
 
-	<delete id='deleteUser' parameterType='int'>
+	<delete id='delete' parameterType='long'>
 		DELETE FROM
 			subscriber
 		WHERE
