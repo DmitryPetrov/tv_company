@@ -6,6 +6,15 @@ public class FavoriteChennel {
     private long idChennel;
     private long idSubscriber;
 
+    
+    public FavoriteChennel() {
+    }
+
+    public FavoriteChennel(long idSubscriber, long idChennel) {
+        this.idChennel = idChennel;
+        this.idSubscriber = idSubscriber;
+    }
+
 
     public long getIdChennel() {
         return idChennel;
@@ -25,4 +34,5 @@ public class FavoriteChennel {
     public void setIdSubscriber(long idSubscriber) {
         this.idSubscriber = idSubscriber;
     }
+
 }
