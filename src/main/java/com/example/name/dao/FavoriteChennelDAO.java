@@ -22,7 +22,7 @@ public class FavoriteChennelDAO {
     
     public void insert(FavoriteChennel favoriteChennel) {
         SqlSession sqlSession =
-                MyBatisUtil.getSqlSessionFactory().openSession();
+                MyBatisUtil.getSqlSessionFactory().openSession();        
         try {
             FavoriteChennelMapper favoriteChennelMapper =
                     sqlSession.getMapper(FavoriteChennelMapper.class);

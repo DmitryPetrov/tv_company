@@ -29,16 +29,23 @@ public class MainController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String start(Model model, @RequestParam(value = "name",
+    public String start(Model model, @RequestParam(value = "subscriberId",
             required = false) String subscriberId) {
+        FavoriteChennel favoriteChennel = new FavoriteChennel();
         if (subscriberId != null) {
             List<Chennel> favoriteChennelsForSubscriber =
                     chennelDAO.getFavoriteChannelForSubscriber(
                             Long.valueOf(subscriberId));
             model.addAttribute("favoriteChennelsForSubscriber",
                     favoriteChennelsForSubscriber);
+            
+            model.addAttribute("selectedSubscriberId",
+                    Long.valueOf(subscriberId));
+            
+            favoriteChennel.setIdSubscriber(Long.valueOf(subscriberId));  
         }
-
+        model.addAttribute("favoriteChennel", favoriteChennel);
+        
         List<Subscriber> subscribers = subscriberDAO.getAll();
         model.addAttribute("subscribers_list", subscribers);
         model.addAttribute("subscriber", new Subscriber());
@@ -46,8 +53,6 @@ public class MainController {
         List<Chennel> chennels = chennelDAO.getAll();
         model.addAttribute("chennels_list", chennels);
         model.addAttribute("chennel", new Chennel());
-
-        model.addAttribute("favoriteChennel", new FavoriteChennel());
 
         return "index";
     }
@@ -77,23 +82,24 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "subscriber/add_favorite_chennel",
+    @RequestMapping(value = "favorite_chennel/add",
             method = RequestMethod.POST)
     public String addChennelToSubscriber(Model model,
             FavoriteChennel favoriteChennel) {
+        System.out.println(favoriteChennel);
         favoriteChennelDAO.insert(favoriteChennel);
-
-        return "redirect:/";
+        
+        return "redirect:/?subscriberId=" + favoriteChennel.getIdSubscriber();
     }
 
 
-    @RequestMapping(value = "subscriber/delete_favorite_chennel",
+    @RequestMapping(value = "favorite_chennel/delete",
             method = RequestMethod.POST)
     public String deleteChennelToSubscriber(Model model,
             FavoriteChennel favoriteChennel) {
         favoriteChennelDAO.delete(favoriteChennel);
 
-        return "redirect:/";
+        return "redirect:/?subscriberId=" + favoriteChennel.getIdSubscriber();
     }
 
 

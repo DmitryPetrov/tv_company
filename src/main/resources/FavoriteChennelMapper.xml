@@ -2,24 +2,28 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
-<mapper namespace='com.example.name.mapper.FavoriteChennel'>
+<mapper namespace='com.example.name.mapper.FavoriteChennelMapper'>
 
   <insert id='insert' parameterType='FavoriteChennel'
-    useGeneratedKeys='true' keyProperty='id'>
+    useGeneratedKeys='false' keyProperty='id_subscriber, id_chennel'>
     INSERT INTO
       favorite_chennel (id_subscriber, id_chennel)
     VALUES
-      (#{id_subscriber}, #{id_chennel})
+      (#{idSubscriber}, #{idChennel})
     ON CONFLICT DO NOTHING
   </insert>
 
   <delete id='delete' parameterType='FavoriteChennel'>
     DELETE FROM
-      tv_chennel 
+      favorite_chennel 
     WHERE
-      id_subscriber = #{id_subscriber}
+      id_subscriber = #{idSubscriber}
     AND
-      id_chennel = #{id_chennel}
+      id_chennel = #{idChennel}
   </delete>
 
+  <resultMap type='FavoriteChennel' id='FavoriteChennelResult'>
+    <result property='idSubscriber' column='id_subscriber' />
+    <result property='idChennel' column='id_chennel' />
+  </resultMap>
 </mapper>

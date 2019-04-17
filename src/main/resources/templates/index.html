@@ -12,10 +12,15 @@
       <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Show favorite chennels</th>
       </tr>
       <tr th:each="item : ${subscribers_list}">
         <td th:utext="${item.id}">..</td>
         <td th:utext="${item.name}">..</td>
+        <td>
+          <form th:action="@{/}" method="GET">
+          <input type="hidden" name="subscriberId" th:value="${item.id}"/>
+            <input type="submit" value="Show" /></form></td>
       </tr>
     </table>
 
@@ -104,6 +109,49 @@
           th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
       </select> 
       <input type="submit" value="Delete" />
+    </form>
+  </fieldset>
+  
+  <br>
+    <fieldset>
+    <legend>Favorite chennels for subscriber</legend>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr th:each="item : ${favoriteChennelsForSubscriber}">
+        <td th:utext="${item.id}">..</td>
+        <td th:utext="${item.name}">..</td>
+        <td th:utext="${item.description}">..</td>
+      </tr>
+    </table>
+    
+    <br>
+    <form th:action="@{favorite_chennel/add}" th:object="${favoriteChennel}" method="POST">
+      <p>
+        Add favorite chennel
+        <select th:field="*{idChennel}">
+          <option value="0">--</option>
+          <option th:each="item : ${chennels_list}" th:value="${item.id}"
+            th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
+        </select> 
+        <input type="hidden" th:field="*{idSubscriber}" th:value="${favoriteChennel.idSubscriber}"/>
+        <input type="submit" value="Add" />
+      </p>
+    </form>
+
+    <br>
+    <form th:action="@{favorite_chennel/delete}" th:object="${favoriteChennel}" method="POST">
+      <label>Delete favorite chennel</label> 
+      <select th:field="*{idChennel}">
+        <option value="0">--</option>
+        <option th:each="item : ${favoriteChennelsForSubscriber}" th:value="${item.id}"
+          th:utext="${item.name} + ' (#' + ${item.id} + ')'">..</option>
+      </select> 
+       <input type="hidden" th:field="*{idSubscriber}" th:value="${favoriteChennel.idSubscriber}">
+       <input type="submit" value="Delete" />
     </form>
   </fieldset>
 

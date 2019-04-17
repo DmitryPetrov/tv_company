@@ -35,4 +35,10 @@ public class FavoriteChennel {
         this.idSubscriber = idSubscriber;
     }
 
+    @Override
+    public String toString() {
+        return "FavoriteChennel [idChennel=" + idChennel + ", idSubscriber="
+                + idSubscriber + "]";
+    }
+
 }
